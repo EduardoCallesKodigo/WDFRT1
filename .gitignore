@@ -70,3 +70,5 @@ pnpm-debug.log*
 .eslintcache
 .stylelintcache
 coverage/
+
+.zip

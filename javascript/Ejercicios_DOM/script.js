@@ -53,18 +53,25 @@ btnAlerta.addEventListener('click', conmutarAlerta);
 // Nombre de función: alternarMensajeSecreto
 //
 // ENUNCIADO:
-// 1. Conmuta la clase 'oculto' en 'mensajeSecreto'.
+// 1. Conmuta la clase 'oculto' en 'mensajeSecreto'. (listo)
 // 2. Verifica si 'mensajeSecreto' contiene la clase 'oculto':
 //    - Si está oculto, actualiza el textContent de 'btnRevelar' a "Revelar Archivo Clasificado".
 //    - Si NO está oculto, actualiza el textContent de 'btnRevelar' a "Ocultar Archivo Clasificado".
 // -----------------------------------------------------------------------------
+
 function alternarMensajeSecreto() {
     // [TU CÓDIGO AQUÍ]
+    mensajeSecreto.classList.toggle('oculto');
+    if (mensajeSecreto.classList.contains('oculto')) {
+        btnRevelar.textContent = "Revelar Archivo Clasificado";
+    } else {
+        btnRevelar.textContent = "Ocultar Archivo Clasificado";
+    }
 }
 
 // Escuchador de evento Reto 2: Asocia el clic de 'btnRevelar' con 'alternarMensajeSecreto'
 // [TU addEventListener AQUÍ]
-
+btnRevelar.addEventListener('click', alternarMensajeSecreto);
 
 // -----------------------------------------------------------------------------
 // RETO 3 (40% Estilos/Texto, 60% Evento Input): Descifrador de Credenciales
@@ -82,12 +89,24 @@ function alternarMensajeSecreto() {
 // -----------------------------------------------------------------------------
 function verificarCredencial(evento) {
     // [TU CÓDIGO AQUÍ]
-
+    const valorIngresado = evento.target.value.trim();
+    //console.log(valorIngresado);
+    if (valorIngresado === 'DELTA7') {
+        //console.log('clave correcta'); 
+        feedbackClave.textContent = "✅ Acceso Concedido: Nivel Director";
+        feedbackClave.style.color = "#00ff9d";
+    } else if (valorIngresado.length > 0) {
+        feedbackClave.textContent = "❌ Clave Inválida / Monitoreando IP...";
+        feedbackClave.style.color = "#ff4d4d";
+    } else {
+        //console.log('clave incorrecta');
+        feedbackClave.textContent = "";
+    }
 }
 
 // Escuchador de evento Reto 3: Asocia el evento 'input' de 'inputCredencial' con 'verificarCredencial'
 // [TU addEventListener AQUÍ]
-
+inputCredencial.addEventListener('input', verificarCredencial);
 
 // -----------------------------------------------------------------------------
 // RETO 4 (40% Creación de Elementos, 60% Evento Submit): Despacho de Misiones
@@ -106,7 +125,27 @@ function verificarCredencial(evento) {
 // -----------------------------------------------------------------------------
 function registrarMision(evento) {
     // [TU CÓDIGO AQUÍ]
+    evento.preventDefault();
+
+    const textoMision = inputMision.value.trim();
+    
+    if (!textoMision) {
+        alert('Especifique una directiva válida');
+        return;
+    }
+
+    const nuevaMision = document.createElement('li');
+    //nuevaMision.classList.add('');
+    nuevaMision.textContent = textoMision;
+    nuevaMision.classList.add('item-mision');
+    listaMisiones.appendChild(nuevaMision); //se la agrego al <ul>
+
+    inputMision.value = '';
+    inputMision.focus();
+
 }
 
 // Escuchador de evento Reto 4: Asocia el evento 'submit' de 'formMision' con 'registrarMision'
 // [TU addEventListener AQUÍ]
+//formMision.addEventListener('submit', (e) => {e.preventDefault();})
+formMision.addEventListener('submit', registrarMision)

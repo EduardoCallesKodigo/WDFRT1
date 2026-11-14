@@ -1,7 +1,7 @@
-function Saludo(props) {
-  
+function Saludo({ name, symbol }) {
+
   return (
-    <p>Hola {props.name}{props.symbol}</p>
+    <p>Hola {name}{symbol}</p>
   );
 }
 

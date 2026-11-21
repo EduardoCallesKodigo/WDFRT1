@@ -2,16 +2,47 @@ import './App.css'
 import AlMontar from './components/AlMontar'
 import ConDependencias from './components/ConDependencias'
 import Sorpresa from './components/Sorpresa'
-// import ContadorClics from './components/ContadorClics'
+import ContadorClics from './components/ContadorClics'
 // import InputControlado from './components/InputControlado'
 // import MapKeyFilter from './components/MapKeyFilter'
 import Tema from './components/Tema'
 import VigiladoIgnorado from './components/VigiladoIgnorado'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+
+function VistaInicio() {
+
+  return (
+    <div>
+      <h2> Pantalla Principal</h2>
+      <Link to='/acerca'>Ir a la información</Link>
+      <Link to='/contador'>Ir a ContadorClics</Link>
+    </div>
+  );
+}
+
+function VistaAcercaDe() {
+  
+  const navigate = useNavigate();
+
+  return(
+    <div>
+      <h2> Acerca del Proyecto</h2>
+      <button onClick={ () => navigate('/contador') }> Regresar</button>
+    </div>
+  );
+}
 
 function App() {
 
   return (
     <div>
+      <Routes>
+        <Route path="/" element={<VistaInicio />} />
+        <Route path="/acerca" element={<VistaAcercaDe />} />
+        <Route path='/contador' element={ <ContadorClics /> } />
+      </Routes>
+
+
       <h1>Metodos  y Técnicas de React</h1>
 
       {/* <Tema titulo="1. Componentes y props" />

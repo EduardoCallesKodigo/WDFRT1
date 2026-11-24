@@ -1,4 +1,5 @@
-/* Fondo divertido estilo tablero arcade con patrón de puntos sutil */
+/* src/index.css */
+/* Fondo degradado con puntitos. Se aplica al contenedor principal de App */
 .fondo-juego {
   background-color: #4f46e5;
   background-image: 
@@ -7,21 +8,19 @@
   background-size: 24px 24px, 100% 100%;
 }
 
-/* Sombra estilo tablero físico para la tarjeta principal */
+/* Tarjeta con borde grueso y sombra, como un tablero de juego */
 .tarjeta-tablero {
   border: 3px solid #1e1b4b !important;
   box-shadow: 0 10px 0 #1e1b4b, 0 20px 30px rgba(0, 0, 0, 0.25) !important;
 }
 
+/* Animación: sube y baja 6 px (la usa el banner 3D) */
 @keyframes flotar {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
 
+/* Aplica la animación flotar al banner */
 .titulo-3d-flotante {
   animation: flotar 3.2s ease-in-out infinite;
   filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.15));
@@ -32,15 +31,13 @@
   transform: scale(1.03) translateY(-4px);
 }
 
+/* Animación: el puño sube y baja, como golpeando al ritmo del canto */
 @keyframes golpeMano {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-16px) scale(1.08);
-  }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-16px) scale(1.08); }
 }
 
+/* Se la ponemos a los puños de CantoDuelo */
 .mano-cantando {
   display: inline-block;
   animation: golpeMano 0.35s ease-in-out infinite;
